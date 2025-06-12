@@ -1,0 +1,19 @@
+version: 2.1
+jobs:
+  say-hello:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - checkout
+      - run:
+          name: "Say hello"
+          command: |
+            if [ "$CIRCLE_BRANCH" == "$HEAD_BRANCH" ]; then
+              echo "On the main branch. Running the deployment script..."
+            else
+              echo "Not on the main branch. Skipping deployment."
+            fi
+workflows:
+  say-hello-workflow:
+    jobs:
+      - say-hello
