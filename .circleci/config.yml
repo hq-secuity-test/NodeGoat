@@ -8,7 +8,7 @@ jobs:
       - run:
           name: "Say hello"
           command: |
-            if [ "$CIRCLE_BRANCH" == "main" ]; then
+            if [ "$CIRCLE_BRANCH" = "$HEAD_BRANCH" ]; then
               echo "On the main branch. Running the deployment script..."
             else
               echo "Not on the main branch. Skipping deployment."
